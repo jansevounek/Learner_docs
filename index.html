@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-item">
+            <a href="#downloads" class="navbar-link" style="color: greenyellow">Downloads</a>
+        </div>
+        <div class="navbar-item">
+            <a href="#guide" class="navbar-link" style="color: skyblue">Guide</a>
+        </div>
+    </div>
+    <div class="downloads">
+        <h1 id="downloads">Downloads</h1>
+        <p>Supabase folder download here:</p>
+        <p><a href="/supabase.zip" class="navbar-link" style="color: greenyellow;" download="supabase.zip">Download</a> (1.8Gb)</p>
+        <p style="margin-left: 10px; margin-right: 10px;">Scripts for easier running here (optional and linux only):</p>
+        <p><a href="/backend.sh" class="navbar-link" style="color: greenyellow;" download="backend.sh">Download</a> (41 bytes)</p>
+        <p><a href="/frontend.sh" class="navbar-link" style="color: greenyellow;" download="frontend.sh">Download</a> (197 bytes)</p>
+    </div>
+    <div class="guide">
+        <h1 id="guide">Guide</h1>
+        <p>This guide will walk you throw the setup of this project. However the creator of this project <b>Strongly</b> advices against trying it. Here we go!</p>
+        <p>First of all this setup guide is recommended for linux however it can also be done on windows. But once again it is recommended not to waste your time on that. Life is too short for it :).</p>
+        <p>Second of all it is important to say you need sudo rights and access to the docker socket.</p>
+        <p>To begin with clone this <a href="https://github.com/jansevounek/Learner" class="guide-link">repository</a>.</p>
+        <div class="code">
+            <p style="margin-left: 20px;">git clone ...</p>
+            <button class="copy-button">copy</button>
+        </div>
+        <p>Now the time has come for you to unzip the supabase folder you can download <a href="/supabase.zip" download="supabase.zip" class="guide-link">Here</a>.</p>
+        <p>On linux ;)</p>
+        <div class="code">
+            <p style="margin-left: 20px;">unzip supabase.zip</p>
+            <button class="copy-button">copy</button>
+        </div>
+        <p>Now comes the part where you are going to need to go to the supabase <a href="https://supabase.com/docs/guides/self-hosting/docker" class="guide-link">website</a> and you are going to scroll to the part where you get to create the anon key and the service key. These you will take and put into the .env file located in supabase/docker/.env into the variables "anon_key=" and "service_key=".</p>
+        <div class="code multi-line">
+            <p style="margin-left: 20px;">anon_key="jndfs..."</p>
+            <p style="margin-left: 20px;">service_key="asda..."</p>
+        </div>
+        <p>And that is it for supabase -> now to the project</p>
+        <p>Now you are going to need to go to the stripe <a href="https://dashboard.stripe.com/login" class="guide-link">website</a> and setup an account (if you do not have it) and get the stripe api key, stripe publishable key and create a product and get its price id (this product is just a one time buy not a subscription)</p>
+        <p>And now that you have them and them to the .env.example file and rename it to just .env</p>
+        <div class="code multi-line">
+            <p style="margin-left: 20px;">.env.example -> .env</p>
+            <p style="margin-left: 20px;">STRIPE_API_KEY=...</p>
+            <p style="margin-left: 20px;">VITE_STRIPE_PUBLISHABLE_KEY=...</p>
+            <p style="margin-left: 20px;">STRIPE_PRICE_ID=...</p>
+        </div>
+        <p>Now that you have that you should be ready to go and install the frontend folder (Learner_frontend/) and run:</p>
+        <div class="code">
+            <p style="margin-left: 20px;">npm install</p>
+            <button class="copy-button">copy</button>
+        </div>
+        <p>After that you first need to go to the Learner_backend/ folder create a venv</p>
+        <div class="code">
+            <p style="margin-left: 20px;">python3 -m venv venv</p>
+            <button class="copy-button">copy</button>
+        </div>
+        <p>And after that install the dependecies: </p>
+        <div class="code">
+            <p style="margin-left: 20px;">pip install -r requirements.txt</p>
+            <button class="copy-button">copy</button>
+        </div>
+        <p>And after that you should be pretty much set to run the project so first of all go back to the Learner_frontend/ folder and run:</p>
+        <div class="code">
+            <p style="margin-left: 20px;">npm run dev</p>
+            <button class="copy-button">copy</button>
+        </div>
+        <p>Second of all run the backend side of the application by going into the Learner_backend/Learner_api/ folder and running:</p>
+        <div class="code">
+            <p style="margin-left: 20px;">python3 run.py</p>
+            <button class="copy-button">copy</button>
+        </div>
+        <p>And lastly you must run the supabase project so go back to the supabase/docker folder and run:</p>
+        <div class="code">
+            <p style="margin-left: 20px;">sudo docker compose up -d</p>
+            <button class="copy-button">copy</button>
+        </div>
+        <p>After you did all of this your application should be running (hopefully) :). Congrats to those who made it here!</p>
+        <h3>Notes</h3>
+        <p>1) For deployment go throw all the setup until the run commands (the first one being "npm run dev") and in the hom folder of the project just run + however you will need to run the supabase project with the same command in its folder</p>
+        <div class="code">
+            <p style="margin-left: 20px;">sudo docker compose up -d</p>
+            <button class="copy-button">copy</button>
+        </div>
+        <p>2) For those who look into working on the project (don't) i have included two download links for two scripts that if run setup the application instantly (use them in the base directory on linux!) -> just run ;)</p>
+        <div class="code multi-line">
+            <p style="margin-left: 20px;">./backend.sh</p>
+            <p style="margin-left: 20px;">./frontend.sh</p>
+        </div>
+        <p>3) enjoy if it works for you :]</p>
+        <p>4) My other project - <a href="http://raycaster.domovprojekt.com/" class="guide-link">here</a></p>
+        <p>Goodbye!</p>
+    </div>
+</body>
+</html>
